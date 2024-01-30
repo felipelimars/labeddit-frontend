@@ -1,6 +1,5 @@
 import styled from 'styled-components';
 
-
 export const Container = styled.div`
 width: 100vw;
 height: 100vh;
@@ -96,10 +95,12 @@ cursor: pointer;
 }
 `;
 export const BlackBar = styled.img`
-width: 130px;
-height: 4px;
+width: 134px;
+height: 5px;
 margin-bottom: 10px;
+display: none;
 @media (max-width: 428px) {
     margin-top: 120px;
+    display: block;
   }
 `;
