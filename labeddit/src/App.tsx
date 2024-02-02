@@ -1,12 +1,12 @@
-import Header from "./components/Header"
-import LoginPage from "./pages/LoginPage"
-import SignupPage from "./pages/SignupPage"
+import { LoginFormProvider } from "./contexts/LoginFormContext"
+import Router from "./routes/Router"
+
 
 function App() {
 
   return (
     <>
-    <SignupPage/>
+        <Router/>
     </>
   )
 }

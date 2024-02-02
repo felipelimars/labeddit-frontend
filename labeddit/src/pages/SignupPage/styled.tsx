@@ -53,7 +53,7 @@ bottom: 5%;
 }
 `
 
-export const InputNickname = styled.input`
+export const InputUsername = styled.input`
 width: 360px;
 height: 50px;
 border-radius: 2px;

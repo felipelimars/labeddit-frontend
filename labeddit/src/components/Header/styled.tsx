@@ -11,17 +11,12 @@ export const Container = styled.div`
   position: relative; 
 `;
 
-export const Minilogotipo = styled.img`
-  width: 35px;
-  height: 35px;
-`;
-
 export const ButtonEnter = styled.span`
   color: blue;
   position: absolute;
   padding-right: 20px;
   right: 1%;
-  font-size: 18px;
+  font-size: 15px;
   font-family: "noto-sans", sans-serif;
   font-weight: bold;
   color: #4088CB;

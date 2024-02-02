@@ -1,0 +1,1 @@
+export default "https://labeddit-backend-mn0r.onrender.com"
