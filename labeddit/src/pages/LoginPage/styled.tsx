@@ -56,7 +56,6 @@ border-radius: 2px;
 border: 1px solid #CCCCCC;
 padding: 10px;
 margin-top: 10px;
-margin-bottom: 60px;
 font-size: 15px;
 font-family: 'Noto Sans', sans-serif;
 `
@@ -64,6 +63,7 @@ export const ButtonContinue = styled.button`
 width: 350px;
 height: 50px;
 border: none; 
+margin-top: 60px;
 border-radius: 20px;
 background: linear-gradient(to left, rgb(249, 173, 83), rgb(255, 104, 134));
 color: #fff;
@@ -103,4 +103,25 @@ display: none;
     margin-top: 120px;
     display: block;
   }
+`;
+
+export const ErrorEmailMessage = styled.p`
+font-size: 10px;
+color: red;
+align-self: flex-start;
+margin-left: 10px;
+font-family: 'Noto Sans', sans-serif;
+`
+export const ErrorPasswordMessage = styled.p`
+font-size: 10px;
+color: red;
+align-self: flex-start;
+margin-left: 10px;
+font-family: 'Noto Sans', sans-serif;
+width: 340px;
+`
+export const LoadingGif = styled.img`
+margin-top: 10px;
+width: 30px;
+height: 30px;
 `;

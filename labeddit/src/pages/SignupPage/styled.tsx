@@ -34,7 +34,7 @@ display: none;
 @media (max-width: 428px) {
     display: block;
     position: absolute;
-    bottom: -12%;
+    bottom: -11.5%;
 }
 `
 
@@ -139,4 +139,17 @@ cursor: pointer;
     @media (max-width: 428px) {
     margin-top: 30px;
 }
+`;
+
+export const ErrorCheckboxMessage = styled.p`
+font-size: 10px;
+color: red;
+align-self: flex-start;
+margin-left: 10px;
+font-family: 'Noto Sans', sans-serif;
+`
+export const LoadingGifSignup = styled.img`
+margin-top: 20px;
+width: 30px;
+height: 30px;
 `;

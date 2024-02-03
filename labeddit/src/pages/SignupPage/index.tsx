@@ -1,10 +1,11 @@
 import Header from "../../components/Header";
 import Blackbar from '../../assets/blackbar.png'
-import { Blackbarfooter, ButtonSignup, Container, ContainerSpanCheck, Contract, FormContainer, InputEmailSignup, InputPasswordSignup, InputUsername, Polite, SpanCheck, SpanRules, WelcomeMessage } from "./styled";
+import { Blackbarfooter, ButtonSignup, Container, ContainerSpanCheck, Contract, FormContainer, InputEmailSignup, InputPasswordSignup, InputUsername, LoadingGifSignup, Polite, SpanCheck, SpanRules, WelcomeMessage } from "./styled";
 import { useSignupForm } from "../../hooks/useSignupForm";
-
+import { ErrorEmailMessage, ErrorPasswordMessage, LoadingGif } from "../LoginPage/styled";
+import Loading from "../../assets/loading-gif.gif"
 const SignupPage = () => {
-  const { form, onChangeForm, signup } = useSignupForm();
+  const { form, errors, onChangeForm, signup, loading } = useSignupForm();
 
   return (
     <>
@@ -13,48 +14,49 @@ const SignupPage = () => {
           <WelcomeMessage>Olá, boas vindas ao LabEddit ;)</WelcomeMessage>
           <FormContainer onSubmit={signup}>
             <InputUsername
-            placeholder="Apelido" 
-            required
-            type="text"
-            name="username"
-            value={form.username}
-            onChange={onChangeForm}
-            ></InputUsername>
+              placeholder="Apelido" 
+              type="text"
+              name="username"
+              value={form.username}
+              onChange={onChangeForm}
+            />
+            {errors.username && <ErrorEmailMessage>{errors.username}</ErrorEmailMessage>}
             <InputEmailSignup 
-            placeholder="Email" 
-            required 
-            type="email"
-            name="email"
-            onChange={onChangeForm}
-            value={form.email}
-            >
-            </InputEmailSignup>
+              placeholder="Email" 
+              name="email"
+              onChange={onChangeForm}
+              value={form.email}
+            />
+            {errors.email && <ErrorEmailMessage>{errors.email}</ErrorEmailMessage>}
             <InputPasswordSignup 
-            id="senha" 
-            placeholder="Senha" 
-            required 
-            type="password"
-            name="password"
-            onChange={onChangeForm}
-            value={form.password}
-            ></InputPasswordSignup>
+              id="senha" 
+              placeholder="Senha" 
+              type="password"
+              name="password"
+              onChange={onChangeForm}
+              value={form.password}
+            />
+            {errors.password && <ErrorPasswordMessage>{errors.password}</ErrorPasswordMessage>}
+            {errors.acceptEmail && <ErrorEmailMessage>{errors.acceptEmail}</ErrorEmailMessage>}
             <SpanRules>Ao continuar, você concorda com o nosso <Contract>Contrato de usuário</Contract> e nossa <Polite>Política de Privacidade</Polite></SpanRules>
             <ContainerSpanCheck>
-            <input 
-            type="checkbox" 
-            name="acceptEmail"
-            onChange={onChangeForm}
-            value={form.acceptEmail as any}
-            required
-            />
-            <SpanCheck>Eu concordo em receber emails sobre coisas legais no Labeddit</SpanCheck>
+              <input 
+                type="checkbox" 
+                name="acceptEmail"
+                onChange={onChangeForm}
+                value={form.acceptEmail as any}
+              />
+              <SpanCheck>Eu concordo em receber emails sobre coisas legais no Labeddit</SpanCheck>
             </ContainerSpanCheck>
-            <ButtonSignup type="submit">Cadastrar</ButtonSignup>
+            {loading ? (
+          <LoadingGifSignup src={Loading} alt="Carregando..." />
+        ) : (
+          <ButtonSignup type="submit">Cadastrar</ButtonSignup>
+        )}
           </FormContainer>
           <Blackbarfooter src={Blackbar} alt="blackbar"/>
         </Container>
     </>
-    
   );
 };
 

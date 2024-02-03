@@ -1,9 +1,9 @@
 import axios from 'axios';
 import BASE_URL from '../constants/BASE_URL';
 import { goToFeedPage } from '../routes/coordinator';
-import { LoginForm, SignupForm } from '../types/form';
+import { TLogin, TSignup } from '../types/form';
 
-export const login = async (form: LoginForm, navigate: any): Promise<void> => {
+export const login = async (form: TLogin, navigate: any): Promise<void> => {
   try {
     const body = {
       email: form.email,
@@ -19,7 +19,7 @@ export const login = async (form: LoginForm, navigate: any): Promise<void> => {
   }
 };
 
-export const signup = async (form: SignupForm, navigate: any): Promise<void> => {
+export const signup = async (form: TSignup, navigate: any): Promise<void> => {
   try {
     const body = {
       username: form.username,

@@ -1,9 +1,9 @@
-export interface LoginForm {
+export interface TLogin {
     email: string,
     password: string
 }
 
-export interface SignupForm {
+export interface TSignup {
     username: string,
     email: string,
     password: string,
