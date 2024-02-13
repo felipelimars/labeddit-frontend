@@ -85,8 +85,6 @@ export const SignupFormProvider: React.FC<{ children: ReactNode }> = ({ children
     return !usernameError && !emailError && !passwordError && !acceptEmailError;
   };
 
-
-
   const handleSignup = async (event: React.FormEvent) => {
     event.preventDefault();
     setLoading(true);
