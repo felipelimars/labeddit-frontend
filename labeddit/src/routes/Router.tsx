@@ -1,6 +1,7 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import { LoginFormProvider } from '../contexts/LoginFormContext'
 import { SignupFormProvider } from '../contexts/SignupFormContext'
+import { GlobalStateProvider } from '../contexts/GlobalState'
 import ErroPage from '../pages/ErrorPage'
 import FeedPage from '../pages/FeedPage'
 import LoginPage from '../pages/LoginPage'
@@ -9,6 +10,7 @@ import SignupPage from '../pages/SignupPage'
 const Router = () => {
     return (
         <BrowserRouter>
+        <GlobalStateProvider>
             <LoginFormProvider>
             <SignupFormProvider>
             <Routes>
@@ -19,6 +21,7 @@ const Router = () => {
             </Routes>
             </SignupFormProvider>
             </LoginFormProvider>
+        </GlobalStateProvider>
         </BrowserRouter>
     )
 }

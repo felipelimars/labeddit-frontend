@@ -7,20 +7,18 @@ import { ButtonEnter, Container } from './styled'
 const Header = () => {
   const navigate = useNavigate()
   const location = useLocation();
-  const isHomePage = location.pathname === "/home"
+  const isHomePage = location.pathname === "/feed"
 
   return (
     <Container>
-      {isHomePage ? (
-        <ButtonEnter onClick={() => goToLoginPage(navigate)}>Logout</ButtonEnter>
-      ) : (
-        <>
-          <img src={Minilogo} alt="logotipo pequeno" />
-          <ButtonEnter onClick={() => goToLoginPage(navigate)}>
-            Entrar
-          </ButtonEnter>
-        </>
-      )}
+      <div> 
+        <img src={Minilogo} alt="logotipo pequeno" />
+        {isHomePage ? (
+          <ButtonEnter onClick={() => goToLoginPage(navigate)}>Logout</ButtonEnter>
+        ) : (
+          <ButtonEnter onClick={() => goToLoginPage(navigate)}>Entrar</ButtonEnter>
+        )}
+      </div>
     </Container>
   )
 }

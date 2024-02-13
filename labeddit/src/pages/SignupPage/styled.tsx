@@ -14,7 +14,7 @@ position: relative;
 
 export const WelcomeMessage = styled.h1`
 font-family: 'IBM Plex Sans', sans-serif;
-width: 364px;
+width: 360px;
 height: 86px;
 font-size: 33px;
 margin-top: 2vh;

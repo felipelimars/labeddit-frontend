@@ -35,13 +35,13 @@ margin-top: 110px;
 overflow: auto;
 `
 export const OrangeLine = styled.img`
-width: 348px;
+width: 358px;
 margin-top: 15px;
 margin-bottom: 15px;
 height: 1px;
 `
 export const InputEmail = styled.input`
-width: 350px;
+width: 360px;
 height: 50px;
 border-radius: 2px;
 border: 1px solid #CCCCCC;
@@ -50,7 +50,7 @@ font-size: 15px;
 font-family: 'Noto Sans', sans-serif;
 `
 export const InputPassword = styled.input`
-width: 350px;
+width: 360px;
 height: 50px;
 border-radius: 2px;
 border: 1px solid #CCCCCC;
@@ -60,7 +60,7 @@ font-size: 15px;
 font-family: 'Noto Sans', sans-serif;
 `
 export const ButtonContinue = styled.button`
-width: 350px;
+width: 360px;
 height: 50px;
 border: none; 
 margin-top: 60px;
@@ -77,7 +77,7 @@ cursor: pointer;
     }
 `;
 export const ButtonCreateAccount = styled.button`
-width: 350px;
+width: 360px;
 height: 50px;
 background-color: #fff;
 border: solid #FE7E03; 

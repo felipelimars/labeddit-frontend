@@ -15,6 +15,7 @@ export const ButtonEnter = styled.span`
   color: blue;
   position: absolute;
   padding-right: 20px;
+  margin-top: 8px;
   right: 1%;
   font-size: 15px;
   font-family: "noto-sans", sans-serif;
