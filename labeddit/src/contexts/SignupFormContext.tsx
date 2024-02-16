@@ -1,20 +1,11 @@
-import { Axios } from 'axios';
-import React, { createContext, ReactNode, useState } from 'react';
+import { createContext, ReactNode, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { signup } from '../services/authService';
-import { TSignup } from '../types/form';
+import { TSignup, tSignupFormContext } from '../types/form';
 
-interface SignupFormContextProps {
-  form: TSignup;
-  errors: { [key: string]: string };
-  onChangeForm: (event: React.ChangeEvent<HTMLInputElement>) => void;
-  signup: (event: React.FormEvent) => void;
-  loading: boolean;
-}
-
-export const SignupFormContext = createContext<SignupFormContextProps | undefined>(undefined);
-
+export const SignupFormContext = createContext<tSignupFormContext | undefined>(undefined);
 export const SignupFormProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
+
   const navigate = useNavigate();
   const [form, setForm] = useState<TSignup>({ username: '', email: '', password: '', acceptEmail: false });
   const [errors, setErrors] = useState<{ [key: string]: string }>({});

@@ -1,38 +1,23 @@
-import React, { useState, ReactNode, createContext } from "react";
+import { useState, ReactNode, createContext } from "react";
 import axios from "axios";
 import  BASE_URL  from "../constants/BASE_URL";
+import { TGlobalContextType } from "../types/globalcontext";
+import { goToCommentPage } from "../routes/coordinator";
+import { useNavigate } from "react-router-dom";
 
-interface GlobalContextType {
-  getPosts: () => void;
-  comments: any[];
-  setComments: React.Dispatch<React.SetStateAction<any[]>>;
-  posts: any[];
-  setPosts: React.Dispatch<React.SetStateAction<any[]>>;
-  loading: boolean;
-  setLoading: React.Dispatch<React.SetStateAction<boolean>>;
-  likePost: (post_id: string) => Promise<void>;
-  dislikePost: (post_id: string) => Promise<void>;
-  likeComment: (post_id: string, comment_id: string) => Promise<void>;
-  dislikeComment: (post_id: string, comment_id: string) => Promise<void>;
-  newPost: (form: string) => void;
-  newComment: (form: { textarea: string }, post_id: string) => void;
-  handlePostSubmit: (event: any) => void;
-  postContent: string;
-  setPostContent: React.Dispatch<React.SetStateAction<string>>;
-  errorMessage: string; 
-  setErrorMessage: React.Dispatch<React.SetStateAction<string>>;
-}
-
-
-export const GlobalState = createContext<GlobalContextType | undefined>(undefined);
+export const GlobalState = createContext<TGlobalContextType | undefined>(undefined);
 
 export const GlobalStateProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
+
   const [posts, setPosts] = useState<any[]>([]);
   const [comments, setComments] = useState<any[]>([]);
   const [loading, setLoading] = useState<boolean>(false);
   const [postContent, setPostContent] = useState('');
+  const [commentContent, setCommentContent] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
 
+  const navigate = useNavigate();
+ 
   const getPosts = async () => {
     const token = localStorage.getItem("token-labeddit");
     const headers = {
@@ -47,6 +32,21 @@ export const GlobalStateProvider: React.FC<{ children: ReactNode }> = ({ childre
     }
   };
 
+  const getComments = async (post_id: string) => {
+    const token = localStorage.getItem("token-labeddit");
+    const headers = {
+      Authorization: `${token}`
+    };
+    await axios
+      .get(`${BASE_URL}/posts/${post_id}/comments`, { headers })
+      .then((res) => {
+        setComments(res.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+  
   const newPost = async (form: string) => {
     const url = `${BASE_URL}/posts/`;
     const parsedForm = JSON.parse(form);
@@ -73,20 +73,23 @@ export const GlobalStateProvider: React.FC<{ children: ReactNode }> = ({ childre
   
   const newComment = async (form: { textarea: string }, post_id: string) => {
     const url = `${BASE_URL}/posts/${post_id}/comments`;
-    const body = {content: form.textarea};
+    const body = {
+      content: form.textarea,
+    };
     const token = localStorage.getItem("token-labeddit");
-    const headers = {Authorization: `${token}`};
+    const headers = { Authorization: `${token}` };
   
-    axios
-      .post(url, body, { headers })
-      .then((res) => {
-        alert("Novo comentário realizado com sucesso!");
-        setComments(res.data);
-      })
-      .catch((err) => {
-        console.log(err.response);
-        alert("Erro inesperado, tente novamente");
-      });
+    try {
+      const response = await axios.post(url, body, { headers });
+      setComments(response.data);
+      console.log(response.data);
+    } catch (error: any) {
+      if (axios.isAxiosError(error)) {
+        console.log(error.response);
+      } else {
+        console.log(error);
+      }
+    }
   };
 
   const likePost = async (post_id: string) => {
@@ -141,13 +144,33 @@ export const GlobalStateProvider: React.FC<{ children: ReactNode }> = ({ childre
         setErrorMessage('O texto não pode ter mais de 300 caracteres.');
       }
     } else {
-      setErrorMessage('O TextArea está vazio. Insira algum texto antes de enviar.');
+      setErrorMessage('Por favor, escreva alguma mensagem!');
     }
+  };
+  
+  const handleCommentSubmit = (event: React.FormEvent<HTMLFormElement>, post_id: string) => {
+    event.preventDefault();
+    if (commentContent.trim() !== '') {
+      if (commentContent.length <= 300) {
+        const formData = { textarea: commentContent };
+        newComment(formData, post_id);        
+        setCommentContent('');
+        setErrorMessage('');
+      } else {
+        setErrorMessage('O texto não pode ter mais de 280 caracteres.');
+      }
+    } else {
+      setErrorMessage('Por favor, escreva algum comentário!');
+    }
+  };
+  const handleclick = (id: string) => {
+    goToCommentPage(navigate, id);
   };
 
 
-  const data: GlobalContextType = {
+  const data: TGlobalContextType = {
     getPosts,
+    getComments,
     comments,
     setComments,
     posts,
@@ -164,7 +187,11 @@ export const GlobalStateProvider: React.FC<{ children: ReactNode }> = ({ childre
     postContent,
     setPostContent,
     errorMessage,
-    setErrorMessage
+    setErrorMessage,
+    handleclick,
+    commentContent, 
+    setCommentContent,
+    handleCommentSubmit,
   };
 
   return (

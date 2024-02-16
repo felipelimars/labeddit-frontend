@@ -9,3 +9,7 @@ export const goToSignupPage = (navigate: NavigateFunction) => {
 export const goToFeedPage = (navigate: NavigateFunction) => {
     navigate('/feed')
 }
+export const goToCommentPage = (navigate: NavigateFunction, id: string) => {
+    const post_id = id
+    navigate(`/posts/${post_id}/comments`)
+}

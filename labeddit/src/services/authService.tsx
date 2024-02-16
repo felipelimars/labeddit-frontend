@@ -35,3 +35,4 @@ export const signup = async (form: TSignup, navigate: any): Promise<void> => {
     throw error;
   }
 };
+

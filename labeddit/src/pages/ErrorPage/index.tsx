@@ -1,6 +1,4 @@
-import React from 'react'
 import Header from '../../components/Header'
-import { ButtonContinue, OrangeLine } from '../LoginPage/styled'
 import { Container, ErrorMessage } from './styled'
 
 const ErroPage = () => {

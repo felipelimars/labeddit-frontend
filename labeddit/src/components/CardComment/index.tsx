@@ -19,42 +19,34 @@ import {
 } from "./styled";
 
 const CardPost: React.FC<CardPostProps> = ({ post_id }) => {
-  const { handleclick, posts, getPosts, likePost, dislikePost } = useContext(GlobalState);
+  const { comments, getComments, likeComment, dislikeComment } = useContext(GlobalState);
   
-  const post = Array.isArray(posts) ? posts.find(post => post.id === post_id) : null;
-
   useEffect(() => {
-    getPosts();
-  }, [getPosts]);
+    getComments(post_id);
+  }, [getComments, post_id]);
 
   return (
     <>
-      {post && (
-        <Container key={post.id}>
+      {comments.map((comment) => (
+        <Container key={comment.id}>
           <div>
             <CommentedBy>Enviado por:</CommentedBy>
-            <Username>{post.creator_name}</Username>
+            <Username>{comment.creator.name}</Username>
           </div>
-          <CommentContent>{post.content}</CommentContent>
+          <CommentContent>{comment.content}</CommentContent>
           <ContainerButtons>
             <ContainerButtonsLike>
-              <LikeButton onClick={() => likePost(post.id)}>
+              <LikeButton onClick={() => likeComment(post_id, comment.id)}>
                 <LikeStyled />
               </LikeButton>
-              <span>{post.likes}</span>
-              <DislikeButton onClick={() => dislikePost(post.id)}>
+              <span>{comment.likes}</span>
+              <DislikeButton onClick={() => dislikeComment(post_id, comment.id)}>
                 <DislikeStyled />
               </DislikeButton>
             </ContainerButtonsLike>
-            <ContainerComment>
-              <CommentButton onClick={() => handleclick(post.id)}>
-                <CommentStyled />
-              </CommentButton>
-              <CommentNumber>{post.comments}</CommentNumber>
-            </ContainerComment>
           </ContainerButtons>
         </Container>
-      )}
+      ))}
     </>
   );
 };
