@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { IoCloseOutline } from "react-icons/io5";
 
 export const Container = styled.div`
   width: 100vw;
@@ -23,3 +24,14 @@ export const ButtonEnter = styled.span`
   color: #4088CB;
   cursor: pointer;
 `;
+
+export const CloseButton = styled(IoCloseOutline)`
+  margin-top: 5px;
+  margin-left: 5px;
+  font-size: 30px;
+  color: #A3A3A3;
+  position: absolute;
+  cursor: pointer;
+  left: 1%;
+`;
+

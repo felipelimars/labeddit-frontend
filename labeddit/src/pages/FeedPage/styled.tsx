@@ -13,15 +13,19 @@ export const CardContainer = styled.div`
 display: flex;
 flex-direction: column-reverse;
 `
+
 export const FormContainer = styled.form`
-width: 360px;
+width: 658px;
 display: flex;
 flex-direction: column;
 align-items: center;
+@media (max-width: 428px) {
+    width: 360px;
+  }
 `
 
 export const ButtonPost = styled.button`
-width: 360px;
+width: 660px;
 height: 50px;
 border: none; 
 border-radius: 12px;
@@ -36,23 +40,36 @@ cursor: pointer;
         background: #FE7E03;
         transition: ease-in-out; 0.3s;
     }
+    @media (max-width: 428px) {
+    width: 360px;
+    height: 50px;
+  }
 `;
 
 export const TextArea = styled.input`
-width: 360px;
+width: 660px;
 height: 131px;
 padding-bottom: 80px;
 padding-left: 15px;
 margin-top: 20px;
 border-radius: 12px;
 font-family: 'IBM Plex Sans', sans-serif;
-font-size: 18px;
+font-size: 17px;
 border: none;
 background-color: #EDEDED;
 overflow-wrap: break-word;
+
+@media (max-width: 428px) {
+width: 360px;
+height: 131px;
+  }
 `
 export const OrangeLine = styled.img`
-width: 358px;
+width: 658px;
 margin-top: 30px;
 margin-bottom: 30px;
+transform: rotate(-0.32deg);
+@media (max-width: 428px) {
+width: 358px;
+  }
 `

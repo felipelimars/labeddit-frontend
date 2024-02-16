@@ -52,7 +52,6 @@ bottom: 5%;
     bottom: 10%;
 }
 `
-
 export const InputUsername = styled.input`
 width: 360px;
 height: 50px;

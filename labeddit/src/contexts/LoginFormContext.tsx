@@ -1,19 +1,11 @@
-import React, { createContext, ReactNode, useState } from 'react';
+import { createContext, ReactNode, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { login } from '../services/authService';
-import { TLogin } from '../types/form';
+import { TLogin, TLoginFormContext } from '../types/form';
 
-interface LoginFormContextProps {
-  form: TLogin;
-  errors: { [key: string]: string };
-  onChangeForm: (event: React.ChangeEvent<HTMLInputElement>) => void;
-  login: (event: React.FormEvent) => void;
-  loading: boolean; 
-}
-
-export const LoginFormContext = createContext<LoginFormContextProps | undefined>(undefined);
-
+export const LoginFormContext = createContext<TLoginFormContext | undefined>(undefined);
 export const LoginFormProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
+
   const navigate = useNavigate();
   const [form, setForm] = useState<TLogin>({ email: '', password: '' });
   const [errors, setErrors] = useState<{ [key: string]: string }>({});
@@ -74,7 +66,6 @@ export const LoginFormProvider: React.FC<{ children: ReactNode }> = ({ children 
     }
   };
   
-
   
   const data = { form, errors, onChangeForm, login: handleLogin, loading };
 

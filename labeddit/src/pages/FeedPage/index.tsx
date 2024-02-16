@@ -4,12 +4,12 @@ import { useProtectPage } from "../../hooks/useProtectPage";
 import { ButtonPost, CardContainer, Container, FormContainer, OrangeLine, TextArea} from './styled';
 import  OrangeLineBar  from '../../assets/orangeline.png'
 import CardPost from '../../components/CardPost';
-import { useContext, useEffect, useState } from 'react';
+import { useContext, useEffect } from 'react';
 import { GlobalState } from '../../contexts/GlobalState';
 import { ErrorEmailMessage } from '../LoginPage/styled';
 
 const FeedPage = () => {
-  const { getPosts, newPost, postContent, setPostContent, errorMessage, setErrorMessage, handlePostSubmit } = useContext(GlobalState);
+  const { posts, getPosts, postContent, setPostContent, errorMessage, handlePostSubmit } = useContext(GlobalState);
   const navigate = useNavigate();
   useProtectPage(navigate);
 
@@ -32,7 +32,9 @@ const FeedPage = () => {
           </FormContainer>
         <OrangeLine src={OrangeLineBar}/>
         <CardContainer>
-        <CardPost/>
+        {posts.map(post => (
+          <CardPost key={post.id} post_id={post.id} />
+        ))}
         </CardContainer>
         </Container>
     </div>

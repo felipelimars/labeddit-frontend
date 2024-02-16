@@ -39,6 +39,7 @@ width: 358px;
 margin-top: 15px;
 margin-bottom: 15px;
 height: 1px;
+transform: rotate(-0.32deg);
 `
 export const InputEmail = styled.input`
 width: 360px;

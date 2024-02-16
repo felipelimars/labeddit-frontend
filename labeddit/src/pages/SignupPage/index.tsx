@@ -4,9 +4,9 @@ import { Blackbarfooter, ButtonSignup, Container, ContainerSpanCheck, Contract, 
 import { useSignupForm } from "../../hooks/useSignupForm";
 import { ErrorEmailMessage, ErrorPasswordMessage, LoadingGif } from "../LoginPage/styled";
 import Loading from "../../assets/loading-gif.gif"
+
 const SignupPage = () => {
   const { form, errors, onChangeForm, signup, loading } = useSignupForm();
-
   return (
     <>
         <Header />
