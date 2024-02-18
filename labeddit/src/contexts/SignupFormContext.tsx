@@ -45,7 +45,7 @@ export const SignupFormProvider: React.FC<{ children: ReactNode }> = ({ children
     }
   
     if (!passwordRegex.test(value)) {
-      return 'Senha inválida. Deve conter pelo menos 6 caracteres, incluindo letras e números.';
+      return 'Senha inválida. Sua senha deve conter pelo menos 6 caracteres, incluindo letras e números.';
     }
   
     return undefined; 
@@ -78,12 +78,19 @@ export const SignupFormProvider: React.FC<{ children: ReactNode }> = ({ children
 
   const handleSignup = async (event: React.FormEvent) => {
     event.preventDefault();
-    setLoading(true);
-    if (validateForm()) {
-      await signup(form, navigate);
+    
+    try {
+      setLoading(true);
+      if (validateForm()) {
+        await signup(form, navigate);
+      }
+    } catch (error) {
+      setErrors({ email: 'Email já cadastrado, por favor, escolha outro email.' });
+    } finally {
+      setLoading(false);
     }
-    setLoading(false);
   };
+  
 
   const data = { form, errors, onChangeForm, signup: handleSignup, loading };
 
