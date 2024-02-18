@@ -60,7 +60,7 @@ export const LoginFormProvider: React.FC<{ children: ReactNode }> = ({ children 
         await login(form, navigate);
       }
     } catch (error) {
-      console.error('Erro ao fazer login:', error);
+      setErrors({ login: 'Email ou senha inválidos!' });
     } finally {
       setLoading(false); 
     }
