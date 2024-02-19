@@ -28,7 +28,6 @@ export const GlobalStateProvider: React.FC<{ children: ReactNode }> = ({ childre
       const response = await axios.get(`${BASE_URL}/posts`, { headers });
       setPosts(response.data);
     } catch (error) {
-      console.log(error);
     }
   };
 
@@ -43,7 +42,6 @@ export const GlobalStateProvider: React.FC<{ children: ReactNode }> = ({ childre
         setComments(res.data);
       })
       .catch((err) => {
-        console.log(err);
       });
   };
   
@@ -130,14 +128,14 @@ export const GlobalStateProvider: React.FC<{ children: ReactNode }> = ({ childre
     console.log(response);
   };
 
-  const handlePostSubmit = (event: any) => {
+  const handlePostSubmit = async (event: any) => {
     event.preventDefault();
     if (postContent.trim() !== '') {
       if (postContent.length <= 300) {
         const formData = {
           textarea: postContent
         };
-        newPost(JSON.stringify(formData));
+        await newPost(JSON.stringify(formData)); 
         setPostContent('');
         setErrorMessage('');
       } else {
@@ -163,6 +161,7 @@ export const GlobalStateProvider: React.FC<{ children: ReactNode }> = ({ childre
       setErrorMessage('Por favor, escreva algum comentário!');
     }
   };
+  
   const handleclick = (id: string) => {
     goToCommentPage(navigate, id);
   };
