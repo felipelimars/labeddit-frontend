@@ -19,13 +19,9 @@ import {
 } from "./styled";
 
 const CardPost: React.FC<CardPostProps> = ({ post_id }) => {
-  const { handleclick, posts, getPosts, likePost, dislikePost } = useContext(GlobalState);
-  
-  const post = Array.isArray(posts) ? posts.find(post => post.id === post_id) : null;
+  const { handleclick, posts, likePost, dislikePost } = useContext(GlobalState);
 
-  useEffect(() => {
-    getPosts();
-  }, [getPosts]);
+  const post = Array.isArray(posts) ? posts.find(post => post.id === post_id) : null;
 
   return (
     <>

@@ -4,9 +4,10 @@ import { useProtectPage } from "../../hooks/useProtectPage";
 import { ButtonPost, CardContainer, Container, FormContainer, OrangeLine, TextArea} from './styled';
 import  OrangeLineBar  from '../../assets/orangeline.png'
 import CardPost from '../../components/CardPost';
-import { useContext, useEffect } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { GlobalState } from '../../contexts/GlobalState';
-import { ErrorEmailMessage } from '../LoginPage/styled';
+import { ErrorEmailMessage, LoadingGif } from '../LoginPage/styled';
+import  Loading  from '../../assets/loading-gif.gif';
 
 const FeedPage = () => {
   const { posts, getPosts, postContent, setPostContent, errorMessage, handlePostSubmit } = useContext(GlobalState);
@@ -15,8 +16,8 @@ const FeedPage = () => {
 
   useEffect(() => {
     getPosts();
-  }, []);
-
+  }, [posts]); 
+  
   return (
     <div>
         <Header/>
@@ -31,11 +32,15 @@ const FeedPage = () => {
             {errorMessage && <ErrorEmailMessage>{errorMessage}</ErrorEmailMessage>}
           </FormContainer>
         <OrangeLine src={OrangeLineBar}/>
+        {posts ? (
         <CardContainer>
-        {posts.map(post => (
-          <CardPost key={post.id} post_id={post.id} />
-        ))}
+          {posts.map(post => (
+            <CardPost key={post.id} post_id={post.id} />
+          ))}
         </CardContainer>
+      ) : (
+        <LoadingGif src={Loading} /> 
+      )}
         </Container>
     </div>
   )

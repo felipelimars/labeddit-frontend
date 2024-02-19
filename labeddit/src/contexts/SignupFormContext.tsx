@@ -92,7 +92,7 @@ export const SignupFormProvider: React.FC<{ children: ReactNode }> = ({ children
   };
   
 
-  const data = { form, errors, onChangeForm, signup: handleSignup, loading };
+  const data = { form, errors, setErrors, onChangeForm, signup: handleSignup, loading };
 
   return (
     <SignupFormContext.Provider value={data}>

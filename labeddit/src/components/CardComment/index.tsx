@@ -1,5 +1,7 @@
-import React, { useContext, useEffect } from "react";
+import { useContext, useEffect } from "react";
+import  Loading  from '../../assets/loading-gif.gif';
 import { GlobalState } from "../../contexts/GlobalState";
+import { LoadingGif } from "../../pages/LoginPage/styled";
 import { CardPostProps } from "../../types/globalcontext";
 import {
   CommentButton,
@@ -27,28 +29,34 @@ const CardPost: React.FC<CardPostProps> = ({ post_id }) => {
 
   return (
     <>
-      {comments.map((comment) => (
-        <Container key={comment.id}>
-          <div>
-            <CommentedBy>Enviado por:</CommentedBy>
-            <Username>{comment.creator.name}</Username>
-          </div>
-          <CommentContent>{comment.content}</CommentContent>
-          <ContainerButtons>
-            <ContainerButtonsLike>
-              <LikeButton onClick={() => likeComment(post_id, comment.id)}>
-                <LikeStyled />
-              </LikeButton>
-              <span>{comment.likes}</span>
-              <DislikeButton onClick={() => dislikeComment(post_id, comment.id)}>
-                <DislikeStyled />
-              </DislikeButton>
-            </ContainerButtonsLike>
-          </ContainerButtons>
-        </Container>
-      ))}
+      {comments ? (
+        <div>
+          {comments.map((comment) => (
+            <Container key={comment.id}>
+              <div>
+                <CommentedBy>Enviado por:</CommentedBy>
+                <Username>{comment.creator.name}</Username>
+              </div>
+              <CommentContent>{comment.content}</CommentContent>
+              <ContainerButtons>
+                <ContainerButtonsLike>
+                  <LikeButton onClick={() => likeComment(post_id, comment.id)}>
+                    <LikeStyled />
+                  </LikeButton>
+                  <span>{comment.likes}</span>
+                  <DislikeButton onClick={() => dislikeComment(post_id, comment.id)}>
+                    <DislikeStyled />
+                  </DislikeButton>
+                </ContainerButtonsLike>
+              </ContainerButtons>
+            </Container>
+          ))}
+        </div>
+      ) : (
+        <LoadingGif src={Loading} />
+      )}
     </>
   );
-};
+}  
 
 export default CardPost;

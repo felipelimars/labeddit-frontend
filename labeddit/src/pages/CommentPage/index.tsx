@@ -1,3 +1,4 @@
+import { useState, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import Header from '../../components/Header';
 import LineOrange from '../../assets/orangeline.png';
@@ -32,7 +33,7 @@ const CommentPage = () => {
           {errorMessage && <ErrorCommentMessage>{errorMessage}</ErrorCommentMessage>}
         </FormContainer>
         <OrangeLine src={LineOrange}/>
-        <CardComment post_id={post_id} />
+          <CardComment post_id={post_id} />
       </Container>
     </>
   );

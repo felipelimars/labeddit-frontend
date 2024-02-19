@@ -1,5 +1,6 @@
 import axios from 'axios';
 import BASE_URL from '../constants/BASE_URL';
+import { useLoginForm } from '../hooks/useLoginForm';
 import { goToFeedPage } from '../routes/coordinator';
 import { TLogin, TSignup } from '../types/form';
 
@@ -14,7 +15,7 @@ export const login = async (form: TLogin, navigate: any): Promise<void> => {
     window.localStorage.setItem('token-labeddit', res.data.token);
     goToFeedPage(navigate);
   } catch (error) {
-    console.error('Error during login:', error);
+    alert("Email não cadastrado!");
     throw error;
   }
 };
