@@ -36,13 +36,15 @@ Quem se cadastrar no aplicativo poderá criar, curtir e comentar publicações.
 
 O Labbedit é um projeto full-stack de conclusão de curso do bootcamp da Labenu. O projeto consiste em uma rede social na qual é possível se cadastrar, fazer login, criar, editar e excluir posts e comentários. Além disso há a possibilidade curtir ou descurtir posts e comentários de outros usuários. 
 
-Requisitos: 
+### Requisitos: 
 
-Front-end
-- Respeitar o [Layout do Figma](https://www.figma.com/file/Byakv89sjTqI6NG2NRAAKJ/Projeto-Integrador-Labeddit?nodeid=0%3A1&t=haX9j5M0lHbjWnAr0)
-- Uso do ReactJS
-- Site deployado
-- Garantir pelo menos 70% das funcionalidades
+#### Front-end:
+
+- [✔️] Respeitar o [Layout do Figma](https://www.figma.com/file/Byakv89sjTqI6NG2NRAAKJ/Projeto-Integrador-Labeddit?nodeid=0%3A1&t=haX9j5M0lHbjWnAr0)
+- [✔️] Utilizar o conceito Mobile First
+- [✔️] Uso do ReactJS
+- [✔️] Site deployado
+- [✔️] Garantir pelo menos 70% das funcionalidades
 
 ### Estrutura: 
 
