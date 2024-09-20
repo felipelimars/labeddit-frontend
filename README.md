@@ -4,7 +4,7 @@ Labeddit é um projeto fullstack, uma rede social com o objetivo de promover a c
 Quem se cadastrar no aplicativo poderá criar, curtir e comentar publicações.
 
 
-- [Link do deploy](https://felipe-labeddit.surge.sh/)
+- [Link do deploy](https://labeddit-frontend-mwvh.vercel.app/)
 - [Link do repositório Backend](https://github.com/felipelimars/labeddit-backend)
 
 <br>
